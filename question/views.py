@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Answer
 from .forms import PostForm
 
 import os
@@ -11,13 +11,23 @@ def post_list(request):
     data = request.POST
     if request.method == 'POST':
         form = PostForm(request.POST)
-        print(form.is_valid())
         form = PostForm(data)
         if form.is_valid():
             try:
                 # TODO: ここでformを正しくSaveする。
                 print(form)
-                # form.save(commit=False)
+                result = {}
+                for num, question in enumerate(posts):
+                    print(num)
+                    # make a result dict
+                    if str(num+1) in data:
+                        result[question.text] = convert_to_answer(data[str(num+1)])
+                    else:
+                        result[question.text] = None
+                    print(num)
+                ans = Answer()
+                ans.answer = result
+                ans.save()
                 message = "保存しました"
             except (KeyError, Post.DoesNotExist):
                 return render(request, 'question/post_list.html', {
@@ -34,6 +44,14 @@ def post_list(request):
             #         'message': "投票内容を選んでください",
             #     })
     return render(request, 'question/post_list.html', {'posts': posts, 'message': message})
+
+def convert_to_answer(answer_num):
+    choices = {'1': '満足',
+               '2': 'やや満足',
+               '3': 'どちらとも言えない',
+               '4': 'やや不満',
+               '5': '不満'}
+    return choices[answer_num]
 
 def save_dict_to_file(dic, filename):
   f = open(filename,'w')

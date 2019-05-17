@@ -16,7 +16,8 @@ class Post(models.Model):
 
 
 class Answer(models.Model):
-    answer = models.CharField(max_length=2, choices=CHOICES)
+    id = models.AutoField(primary_key=True)
+    answer = models.TextField()
 
     def __str__(self):
         return self.answer

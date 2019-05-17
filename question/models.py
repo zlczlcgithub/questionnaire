@@ -7,11 +7,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.text
-
-
-class Answer(models.Model):
-    acount_id = models.CharField(max_length=40)
-    answer = models.CharField(max_length=2)
-
-    def __str__(self):
-        return self.answer

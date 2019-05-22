@@ -1,1 +1,0 @@
-<QueryDict: {'csrfmiddlewaretoken': ['7G5OknC7ojAYeulpPWijsMGKx8oaIKsua2Ft32AKcsqdfUQqnn3VSsZXhZisOVnq']}>

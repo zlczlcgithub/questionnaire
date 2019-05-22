@@ -12,7 +12,7 @@
             </div>
             {% for post in posts %}
                 <div>
-                    <p>{{ post.text }}</p>
+                    <p>Q.{{ post.id }}, {{ post.text }}</p>
                 </div>
                 <div>
                     <input type="radio" name={{ post.id }} value="1">満足

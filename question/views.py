@@ -34,15 +34,6 @@ def post_list(request):
                     'posts': posts,
                     'message': "投票内容を選んでください",
                 })
-            # try:
-            # TODO: ここでformを正しくSaveする。
-            save_dict_to_file(data, os.getcwd() + "/question/history_data/" + data["csrfmiddlewaretoken"] + ".txt")
-            message = "保存しました"
-            # except (KeyError, Post.DoesNotExist):
-            #     return render(request, 'question/post_list.html', {
-            #         'posts': posts,
-            #         'message': "投票内容を選んでください",
-            #     })
     return render(request, 'question/post_list.html', {'posts': posts, 'message': message})
 
 def convert_to_answer(answer_num):
@@ -52,8 +43,3 @@ def convert_to_answer(answer_num):
                '4': 'やや不満',
                '5': '不満'}
     return choices[answer_num]
-
-def save_dict_to_file(dic, filename):
-  f = open(filename,'w')
-  f.write(str(dic))
-  f.close()

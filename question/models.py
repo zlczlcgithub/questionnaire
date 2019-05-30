@@ -20,9 +20,9 @@ class Post(models.Model):
 
 
 class Answer(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # question = models.ForeignKey(Post, on_delete=models.PROTECT)
-    # time = models.DateTimeField(default=timezone.now)
+    user = models.TextField(default='user')
+    question = models.TextField(default='question')
+    time = models.DateTimeField(default=timezone.now)
     answer = models.TextField()
 
     def __str__(self):

@@ -5,7 +5,9 @@ from .forms import PostForm
 
 def post_list(request):
     posts = Post.objects.all()
+    user = request.user
     message = ''
+
     data = request.POST
     if request.method == 'POST':
         form = PostForm(data)
@@ -18,8 +20,11 @@ def post_list(request):
                         result[question.text] = convert_to_answer(data[str(num+1)])
                     else:
                         result[question.text] = None
-                ans = Answer()
-                ans.answer = result
+                ans = Answer(
+                    user=data['csrfmiddlewaretoken'],
+                    question=list(result.keys()),
+                    answer=list(result.values())
+                )
                 ans.save()
                 message = "保存しました"
             except (KeyError, Post.DoesNotExist):
@@ -37,4 +42,3 @@ def convert_to_answer(answer_num):
                '4': 'やや不満',
                '5': '不満'}
     return choices[answer_num]
-

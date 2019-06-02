@@ -12,16 +12,14 @@
             </div>
             {% for post in posts %}
                 <div>
-                    <p>Q.{{ post.id }}, {{ post.text }}</p>
+                    <p>Q.{{ forloop.counter }} {{ post.text }}</p>
                 </div>
                 <div>
-                    <nobr> 満足 </nobr>
-                    <input type="radio" name={{ post.id }} value="1">
-                    <input type="radio" name={{ post.id }} value="2">
-                    <input type="radio" name={{ post.id }} value="3">
-                    <input type="radio" name={{ post.id }} value="4">
-                    <input type="radio" name={{ post.id }} value="5">
-                    <nobr> 不満 </nobr>
+                    <input type="radio" name={{ post.text }} value="ans1"> {{post.ans1}}
+                    <input type="radio" name={{ post.text }} value="ans2"> {{post.ans2}}
+                    <input type="radio" name={{ post.text }} value="ans3"> {{post.ans3}}
+                    <input type="radio" name={{ post.text }} value="ans4"> {{post.ans4}}
+                    <input type="radio" name={{ post.text }} value="ans5"> {{post.ans5}}
                 </div>
                 <br>
             {% endfor %}

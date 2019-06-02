@@ -5,16 +5,13 @@ from django.utils import timezone
 
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
-    text = models.CharField(max_length=200)
-
-    # TODO: Need to fix db
-    '''
-    description_for_1 = models.CharField(max_length=200)
-    description_for_2 = models.CharField(max_length=200)
-    description_for_3 = models.CharField(max_length=200)
-    description_for_4 = models.CharField(max_length=200)
-    description_for_5 = models.CharField(max_length=200)
-    '''
+    text = models.CharField(max_length=200)    
+    ans1 = models.CharField(max_length=200, default = "非常に不満")
+    ans2 = models.CharField(max_length=200, default = "不満")
+    ans3 = models.CharField(max_length=200, default = "やや不満")
+    ans4 = models.CharField(max_length=200, default = "やや満足")
+    ans5 = models.CharField(max_length=200, default = "満足")
+    
     def __str__(self):
         return self.text
 

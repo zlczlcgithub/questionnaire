@@ -16,8 +16,8 @@ def post_list(request):
                 result = {}
                 for num, question in enumerate(posts):
                     # make a result dict
-                    if str(num+1) in data:
-                        result[question.text] = convert_to_answer(data[str(num+1)])
+                    if question.text in data:
+                        result[question.text] = eval("question." + data[question.text])
                     else:
                         result[question.text] = None
                 ans = Answer(
@@ -34,11 +34,3 @@ def post_list(request):
                 })
     return render(request, 'question/post_list.html', {'posts': posts, 'message': message})
 
-
-def convert_to_answer(answer_num):
-    choices = {'1': '満足',
-               '2': 'やや満足',
-               '3': 'どちらとも言えない',
-               '4': 'やや不満',
-               '5': '不満'}
-    return choices[answer_num]
